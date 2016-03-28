@@ -17,7 +17,6 @@
         String pass = request.getParameter("password");
         if (account.getLogin() == false) {
     %>
-    123
     <form>
         <table>
             <tr>
