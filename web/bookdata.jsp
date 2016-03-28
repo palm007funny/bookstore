@@ -23,18 +23,11 @@
                 File inputWorkbook = new File(fileName);
                 Workbook w = Workbook.getWorkbook(inputWorkbook);
                 editBook book = new editBook();
-                /**
-                 * * Sheet 1 **
-                 */
+
                 Sheet sheet = w.getSheet(0);
-
-
-                //Cell cell = sheet.getCell(i, i1)
-                /**
-                 * * Sheet 2 **
-                 */%>   
+%>   
         <%    for (int j = 0; j <= sheet.getColumns(); j++) {
-                    //   for (int i = 0; i <= sheet.getRows(); i++) {
+
                     Cell[] cell = sheet.getRow(j);
                     book.Add(cell[1].getContents(), cell[2].getContents(), cell[3].getContents(), cell[4].getContents(), cell[5].getContents()
                             , cell[6].getContents(), cell[7].getContents(), cell[8].getContents(), cell[9].getContents(),cell[10].getContents());

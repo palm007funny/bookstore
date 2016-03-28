@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Cart {
     protected Vector this_cart = new Vector();
-    int x;
     public void addItem(String id,String bookname,float price,float discount,int amount) { 
 
         if (amount<=0){
