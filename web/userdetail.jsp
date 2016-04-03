@@ -37,9 +37,7 @@
                 <META HTTP-EQUIV="refresh" 
                       CONTENT="0;URL=userdetail.jsp">
                 <% }
-                } else {%>
-
-
+                } else {%>                
                 <table id="t0" border="2" bordercolor="#EEC591" width="250" align="left"> 
 
                     <tr><td><center><p><a href="userdetail.jsp?edit=<%=1%>">แก้ไขข้อมูล</a></p></center></td></tr>
@@ -66,68 +64,70 @@
                     s = db.getConnection().createStatement();
                     ResultSet result = s.executeQuery("select * from orders where idaccount= '" + account.getID() + "'");
                     int orderID;%>
+            <table border="0" width="500" align="left">
+                <tr><td>
+                        <%while (result.next()) {
+                                session.setAttribute("total", result.getFloat("total"));
+                        %>
 
-            <%while (result.next()) {
-                    session.setAttribute("total", result.getFloat("total"));
-            %>
-            <table id="t2" border="1" width="600" align="left">
-                <tr>
-                    <th width="150"> <div align="center">หมายเลขสั่งซื้อ </div></th>
-                    <th width="150"> <div align="center">เวลาสั่งซื้อ </div></th>
-                    <th width="150"> <div align="center">สถานะการสั่งซื้อ </div></th>
-                </tr>
-                <tr>
-                    <td><div align="center"><%=result.getInt("OrderID")%></div></td>
-                    <td><%=result.getDate("OnDate")%></td>
-                    <td align="center"><%=result.getString("Status")%></td>
-                    <td align="center"> <a href="userdetail.jsp?orderID=<%=result.getInt("OrderID")%>">รายละเอียดสินค้า</a></td>
-                </tr>
-            </table><br><br><br><br><br><br>
-            <%  }
+                        <table id="t2" border="1" width="600" align="left">
+                            <tr>
+                                <th width="150"> <div align="center">หมายเลขสั่งซื้อ </div></th>
+                                <th width="150"> <div align="center">เวลาสั่งซื้อ </div></th>
+                                <th width="150"> <div align="center">สถานะการสั่งซื้อ </div></th>
+                            </tr>
+                            <tr>
+                                <td><div align="center"><%=result.getInt("OrderID")%></div></td>
+                                <td><%=result.getDate("OnDate")%></td>
+                                <td align="center"><%=result.getString("Status")%></td>
+                                <td align="center"> <a href="userdetail.jsp?orderID=<%=result.getInt("OrderID")%>">รายละเอียดสินค้า</a></td>
+                            </tr>
+                        </table><br><br><br><br><br><br>
+                        <%  }
                 } %>
-            <% if (request.getParameter("orderID") != null) {
-                    Connection connect = null;
-                    Statement s = null;
-                    Statement s2 = null;
-                    db.doConnection();
-                    s = db.getConnection().createStatement();
-                    s2 = db.getConnection().createStatement();
-                    int orderID = Integer.parseInt(request.getParameter("orderID"));
-                    int bookid = 0;
-                    int amount = 0;
-                    Object total = session.getAttribute("total");
-                    ResultSet result = s.executeQuery("select * from orderdetails where OrderID= '" + orderID + "'");
-                    ResultSet result2 =null; %>
-            <table id="t2" border="1" width="750" align="left">
-                <tr>
-                    <th width="150"> <div align="center">รหัสสินค้า </div></th>
-                    <th width="150"> <div align="center">ชื่อหนังสือ </div></th>
-                    <th width="150"> <div align="center">ราคา </div></th>
-                    <th width="150"> <div align="center">จำนวน </div></th>
-                </tr>	
-                <%while (result.next()) {
-                        bookid = result.getInt("ProductID");
-                        amount = result.getInt("Qty");
-                        result2 = s2.executeQuery("select * from book where id= '" + bookid + "'");
-                        while (result2.next()) {%>
-                <tr>
-                    <td><div align="center"><%=result2.getInt("id")%></div></td>
-                    <td><%=result2.getString("bookname")%></td>
-                    <td><%=result2.getString("price")%></td>
-                    <td><%out.print(amount);%></td>
-                </tr>
-                <%   }       
+                        <% if (request.getParameter("orderID") != null) {
+                                Connection connect = null;
+                                Statement s = null;
+                                Statement s2 = null;
+                                db.doConnection();
+                                s = db.getConnection().createStatement();
+                                s2 = db.getConnection().createStatement();
+                                int orderID = Integer.parseInt(request.getParameter("orderID"));
+                                int bookid = 0;
+                                int amount = 0;
+                                Object total = session.getAttribute("total");
+                                ResultSet result = s.executeQuery("select * from orderdetails where OrderID= '" + orderID + "'");
+                                ResultSet result2 = null; %>
+                        <table id="t2" border="1" width="750" align="left">
+                            <tr>
+                                <th width="150"> <div align="center">รหัสสินค้า </div></th>
+                                <th width="150"> <div align="center">ชื่อหนังสือ </div></th>
+                                <th width="150"> <div align="center">ราคา </div></th>
+                                <th width="150"> <div align="center">จำนวน </div></th>
+                            </tr>	
+                            <%while (result.next()) {
+                                    bookid = result.getInt("ProductID");
+                                    amount = result.getInt("Qty");
+                                    result2 = s2.executeQuery("select * from book where id= '" + bookid + "'");
+                                    while (result2.next()) {%>
+                            <tr>
+                                <td><div align="center"><%=result2.getInt("id")%></div></td>
+                                <td><%=result2.getString("bookname")%></td>
+                                <td><%=result2.getString("price")%></td>
+                                <td><%out.print(amount);%></td>
+                            </tr>
+                            <%   }
                     }%>
-                <td>รวม</td><td><%out.print(total);%> บาท</td>
-                <tr><td><center><p><a href="pdf.jsp?orderID=<%= orderID%>">Download Invoice</a></p></center></td></tr>
+                            <td>รวม</td><td><%out.print(total);%> บาท</td>
+                            <tr><td><center><p><a href="pdf.jsp?orderID=<%= orderID%>">Download Invoice</a></p></center></td></tr>
             </table>
             <% db.endConnection();
-                result2.close();
-                s.close();
-                s2.close();
-                result.close();
+                    result2.close();
+                    s.close();
+                    s2.close();
+                    result.close();
                 }
-                
+
             %>
             <%------------------------------------------------------------------------------------------------------------------------------%>
             <%--------------------------------------------แก้ไขข้อมูล--------------------------------------------------------------------------%>
@@ -194,7 +194,8 @@
                     </tr>
                     <tr><td></td><td><input type="submit" value="Save"></td></tr>
                 </table>
-
+                </td></tr>
+                </table>
             </form>
             <%}
 
@@ -222,8 +223,8 @@
                           }
                           result.close();
                           s.close();
-                          db.endConnection();
-                      }%>
+                      }
+                      db.endConnection();%>
             <%------------------------------------------------------------------------------------------------------------------------------%>
             <style>
                 th, td {

@@ -45,26 +45,30 @@
                 }
             } catch (Exception e) {
             }
-            db.endConnection();
+
         %>
 
-        <table width="900" border="1">
+        <table width="1050" border="1">
             <tr>
             <th width="100"> <div align="center">รหัสสินค้า </div></th>
             <th width="400"> <div align="center">ชื่อหนังสือ </div></th>
             <th width="100"> <div align="center">ราคา </div></th>
             <th width="100"> <div align="center">ส่วนลด(%) </div></th>
             <th width="100"> <div align="center">จำนวน </div></th>
-            <th width="100"> <div align="center"> </div></th>
+            <th width="100"> <div align="center"></div></th>
+
         </tr>
 
 
-        <%
-            Vector mycart = cart.getCart();
+        <%            Vector mycart = cart.getCart();
             Item item;
             String amount = "1";
             int value = 1;
-
+            int temp_Stock = 0;
+            int disable = 0;
+            boolean check = true;
+            ResultSet result2;
+            Statement s2 = db.getConnection().createStatement();
             float total, finish_total = 0;
             if (mycart.size() > 0) {
                 StringBuffer condition = new StringBuffer(" in (");
@@ -75,7 +79,10 @@
                         value = Integer.parseInt(amount);
                         cart.updateItem(item.ID, value);
                     }
-
+                    result2 = s2.executeQuery("select * from book where id= '" + item.ID + "'");
+                    if (result2.next()) {
+                        temp_Stock = result2.getInt("Stock");
+                    }
         %>
 
         <tr>
@@ -84,6 +91,7 @@
         <td><div align="center"><%out.print(item.Price);%></div></td>
         <td><div align="center"><%out.print(item.Discount);%></div></td>
         <td align="center"><%out.print(item.Amount);%></td>
+
         <form>
             <td>                  
                 <select name="Points<%=i%>" size="1" id="Points<%=i%>">
@@ -105,6 +113,16 @@
             finish_total += total;%>
 
         <td align="center"> <a href="cartlist.jsp?del=<%=item.ID%>">Del</a></td>
+        <% if (item.Amount > temp_Stock) { %>
+        <th width="150"><div align="center"><font color="red"><%out.print("จำนวนสินค้าไม่พอ");%></font></div></th>
+                    <% disable--;
+                        } else {
+                            disable++;
+                        }
+                        if (disable < i) {
+                            check = false;
+                        } else {check = true;
+                        }%>
     </tr>                                                          
     <%
         String del = request.getParameter("del");
@@ -114,7 +132,7 @@
           CONTENT="0;URL=cartlist.jsp">
     <%}%>               
     <% }
-        } %>
+        db.endConnection();%>
 </table>
 <table width="200" border="1">
     <tr>
@@ -124,10 +142,10 @@
     </td>
     <td align="center">
         <form name="form" method="post" action="checkout.jsp">
-            <input type="submit" name="Submit" value="Check Out">
+            <input type="submit" <%if (check == false) {%>disabled<%}%> name="Submit" value="Check Out">
         </form>
     </td>
-
+    <%}%>
 </tr>	
 </table>
 <p><a href="index.jsp">เลือกสินค้าต่อ</a></p> 

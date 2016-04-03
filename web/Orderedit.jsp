@@ -51,7 +51,6 @@
             db.doConnection();
             s = db.getConnection().createStatement();
             result2 = s.executeQuery("select * from orders where OrderID= '" + result.getInt("OrderID") + "'");
-
             if (request.getParameter("status" + i) != null) {
                 if (result2.next()) {
                     String Status = "UPDATE orders "
