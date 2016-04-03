@@ -103,7 +103,6 @@
                 ResultSet result = s.executeQuery("select * from account where idaccount= '" + account.getID() + "'");
                 if (result.next()) {
             %>
-            <% if (temp_Stock >= 0) {%> 
             <form name="checkout" method="post" action="finalorder.jsp">
                 <table width="540" border="1">
                     <th width="100"> <div align="center">ชื่อ </div></th>
@@ -141,12 +140,8 @@
                         </td>
                     </tr>
                 </table>    
-                <%} else {%><form name="checkout" method="post" action="checkout.jsp">
-                    <br>สินค้ามีจำนวนไม่พอ
-                    <a href="cartlist.jsp"> กรุณาทำรายการใหม่</a>
-                    <% }
-                            }
-                        }%>
-                        
-                    </body>
-                    </html>
+                <%}
+                    }%>
+
+                </body>
+                </html>
