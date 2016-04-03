@@ -1,4 +1,3 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
@@ -12,7 +11,7 @@
     <h1><center> BookStore </center></h1>
 </head>
 <body bgcolor="#FFE7BA">
-    <%
+    <%  
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         if (account.getLogin() == false) {
