@@ -1,7 +1,6 @@
 package bookstore.cart;
 
 import java.util.*;
-
 public class Cart {
     protected Vector this_cart = new Vector();
     public void addItem(String id,String bookname,float price,float discount,int amount) { 

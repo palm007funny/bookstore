@@ -76,8 +76,12 @@
                     item = (Item) mycart.elementAt(i);
                     amount = request.getParameter("Points" + i);
                     if (request.getParameter("Points" + i) != null) {
+                        if (request.getParameter("Points" + i) != "more") {
                         value = Integer.parseInt(amount);
                         cart.updateItem(item.ID, value);
+                        }else {
+                            
+                        }
                     }
                     result2 = s2.executeQuery("select * from book where id= '" + item.ID + "'");
                     if (result2.next()) {
@@ -104,7 +108,13 @@
                     <option value="7">7</option>
                     <option value="8">8</option>
                     <option value="9">9</option>
+                    <option value="more">more</option>
                 </select>
+                    <%if(request.getParameter("Points" + i) != "more") { %>
+                        <form>
+                        <input type="submit" name="AddPoints" id="AddPoints" value="Add">
+                        </form>
+                   <% }%>
 
                 <input type="submit" name="AddPoints" id="AddPoints" value="Add">
             </td>
