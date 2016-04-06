@@ -46,7 +46,7 @@ public class editBookTest {
         String bookname = "book";
         String detail = "detail";
         String picture = "pic";
-        String price = "1000";
+        String price = "100";
         String discount = "10";
         String booksize = "55";
         String bookweight = "55";

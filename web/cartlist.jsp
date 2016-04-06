@@ -45,25 +45,14 @@
                 }
             } catch (Exception e) {
             }
-
         %>
-
-        <table width="1050" border="1">
-            <tr>
-            <th width="100"> <div align="center">รหัสสินค้า </div></th>
-            <th width="400"> <div align="center">ชื่อหนังสือ </div></th>
-            <th width="100"> <div align="center">ราคา </div></th>
-            <th width="100"> <div align="center">ส่วนลด(%) </div></th>
-            <th width="100"> <div align="center">จำนวน </div></th>
-            <th width="100"> <div align="center"></div></th>
-
-        </tr>
 
 
         <%            Vector mycart = cart.getCart();
             Item item;
             String amount = "1";
             int value = 1;
+            int value2 = 1;
             int temp_Stock = 0;
             int disable = 0;
             boolean check = true;
@@ -74,14 +63,20 @@
                 StringBuffer condition = new StringBuffer(" in (");
                 for (int i = 0; i < mycart.size(); i++) {
                     item = (Item) mycart.elementAt(i);
-                    amount = request.getParameter("Points" + i);
                     if (request.getParameter("Points" + i) != null) {
-                        if (request.getParameter("Points" + i) != "more") {
-                        value = Integer.parseInt(amount);
-                        cart.updateItem(item.ID, value);
-                        }else {
-                            
+                        if ((request.getParameter("Points" + i).equals("more"))) {
+                            cart.more(true);
                         }
+                        if (!(request.getParameter("Points" + i).equals("more"))) {
+                            cart.more(false);
+                            amount = request.getParameter("Points" + i);
+                            value = Integer.parseInt(amount);
+                            cart.updateItem(item.ID, value);
+                        }
+                    }
+                    if (request.getParameter("num" + i) != null) {
+                        value2 = Integer.parseInt(request.getParameter("num" + i));
+                        cart.updateItem(item.ID, value2);
                     }
                     result2 = s2.executeQuery("select * from book where id= '" + item.ID + "'");
                     if (result2.next()) {
@@ -89,6 +84,22 @@
                     }
         %>
 
+        <table width="1270" border="1">
+            <tr>
+            <th width="100"> <div align="center">รหัสสินค้า </div></th>
+            <th width="400"> <div align="center">ชื่อหนังสือ </div></th>
+            <th width="100"> <div align="center">ราคา </div></th>
+            <th width="100"> <div align="center">ส่วนลด(%) </div></th>
+            <th width="100"> <div align="center">จำนวน </div></th>
+            <th width="100"> <div align="center">เลือกจำนวน</div></th>
+            <th width="50"> <div align="center"></div></th>
+                <% if (cart.getMore() == true) { %>
+            <th width="120"> <div align="center"></div></th>
+                <%}
+                    if (check == false) { %>
+            <th width="150"> <div align="center"></div></th>
+                <%}%>
+        </tr>
         <tr>
         <td><div align="center"> <%out.print(item.ID);%></div></td>
         <td><div align="center"><%out.print(item.Bookname);%></div></td>
@@ -110,15 +121,18 @@
                     <option value="9">9</option>
                     <option value="more">more</option>
                 </select>
-                    <%if(request.getParameter("Points" + i) != "more") { %>
-                        <form>
-                        <input type="submit" name="AddPoints" id="AddPoints" value="Add">
-                        </form>
-                   <% }%>
-
                 <input type="submit" name="AddPoints" id="AddPoints" value="Add">
             </td>
         </form>
+        <%if (cart.getMore() == true) {
+        %>
+        <form>
+            <td width="100"><input type="text" name="num<%=i%>" size="2">
+                <input type="submit" name="num" value="Add"></td>
+        </form>
+        <%
+            }%>
+
         <%total = ((item.Price) - (item.Price * (item.Discount / 100))) * (float) item.Amount;
             finish_total += total;%>
 
@@ -131,7 +145,8 @@
                         }
                         if (disable < i) {
                             check = false;
-                        } else {check = true;
+                        } else {
+                            check = true;
                         }%>
     </tr>                                                          
     <%
@@ -158,4 +173,7 @@
     <%}%>
 </tr>	
 </table>
+<%if (mycart.size() <= 0){%>
+    ยังไม่มีสินค้าในรายการ
+<%}%>
 <p><a href="index.jsp">เลือกสินค้าต่อ</a></p> 

@@ -3,6 +3,7 @@ package bookstore.cart;
 import java.util.*;
 public class Cart {
     protected Vector this_cart = new Vector();
+    boolean more;
     public void addItem(String id,String bookname,float price,float discount,int amount) { 
 
         if (amount<=0){
@@ -41,6 +42,12 @@ public class Cart {
     public void removeAllItem() {    
         this_cart.removeAll(this_cart);
    }
+    public void more(boolean add){
+        more = add;
+    }
+    public boolean getMore(){
+        return more;
+    }
 }
 
 
