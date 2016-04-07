@@ -59,32 +59,8 @@
             ResultSet result2;
             Statement s2 = db.getConnection().createStatement();
             float total, finish_total = 0;
-            if (mycart.size() > 0) {
-                StringBuffer condition = new StringBuffer(" in (");
-                for (int i = 0; i < mycart.size(); i++) {
-                    item = (Item) mycart.elementAt(i);
-                    if (request.getParameter("Points" + i) != null) {
-                        if ((request.getParameter("Points" + i).equals("more"))) {
-                            cart.more(true);
-                        }
-                        if (!(request.getParameter("Points" + i).equals("more"))) {
-                            cart.more(false);
-                            amount = request.getParameter("Points" + i);
-                            value = Integer.parseInt(amount);
-                            cart.updateItem(item.ID, value);
-                        }
-                    }
-                    if (request.getParameter("num" + i) != null) {
-                        value2 = Integer.parseInt(request.getParameter("num" + i));
-                        cart.updateItem(item.ID, value2);
-                    }
-                    result2 = s2.executeQuery("select * from book where id= '" + item.ID + "'");
-                    if (result2.next()) {
-                        temp_Stock = result2.getInt("Stock");
-                    }
-        %>
-
-        <table width="1270" border="1">
+            if (mycart.size() > 0) { %>
+        <table id="t1" width="1270" border="1">
             <tr>
             <th width="100"> <div align="center">รหัสสินค้า </div></th>
             <th width="400"> <div align="center">ชื่อหนังสือ </div></th>
@@ -100,6 +76,30 @@
             <th width="150"> <div align="center"></div></th>
                 <%}%>
         </tr>
+        <%  StringBuffer condition = new StringBuffer(" in (");
+          for (int i = 0; i < mycart.size(); i++) {
+              item = (Item) mycart.elementAt(i);
+              if (request.getParameter("Points" + i) != null) {
+                  if ((request.getParameter("Points" + i).equals("more"))) {
+                      cart.more(true);
+                  }
+                  if (!(request.getParameter("Points" + i).equals("more"))) {
+                      cart.more(false);
+                      amount = request.getParameter("Points" + i);
+                      value = Integer.parseInt(amount);
+                      cart.updateItem(item.ID, value);
+                  }
+              }
+              if (request.getParameter("num" + i) != null) {
+                  value2 = Integer.parseInt(request.getParameter("num" + i));
+                  cart.updateItem(item.ID, value2);
+              }
+              result2 = s2.executeQuery("select * from book where id= '" + item.ID + "'");
+              if (result2.next()) {
+                  temp_Stock = result2.getInt("Stock");
+              }
+        %>
+
         <tr>
         <td><div align="center"> <%out.print(item.ID);%></div></td>
         <td><div align="center"><%out.print(item.Bookname);%></div></td>
@@ -159,7 +159,7 @@
     <% }
         db.endConnection();%>
 </table>
-<table width="200" border="1">
+<table id="t2" width="200" border="1">
     <tr>
     <th width="71"> <div align="center"> รวม </div></th>
     <td align="center">
@@ -174,6 +174,26 @@
 </tr>	
 </table>
 <%if (mycart.size() <= 0){%>
-    ยังไม่มีสินค้าในรายการ
+ยังไม่มีสินค้าในรายการ
 <%}%>
 <p><a href="index.jsp">เลือกสินค้าต่อ</a></p> 
+<style>
+    table#t1 tr:nth-child(even) {
+        background-color: #eee;
+    }
+    table#t1 tr:nth-child(odd) {
+        background-color:#fff;
+    }
+    table#t1 th	{
+        background-color: #fff;
+        color: black;
+    }
+    table#t2 th	{
+        background-color: #fff;
+        color: black;
+    }
+    table#t2 tr	{
+        background-color: #fff;
+        color: black;
+    }
+</style>

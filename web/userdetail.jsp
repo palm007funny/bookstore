@@ -67,7 +67,6 @@
             <table border="0" width="500" align="left">
                 <tr><td>
                         <%while (result.next()) {
-                                session.setAttribute("total", result.getFloat("total"));
                         %>
 
                         <table id="t2" border="1" width="600" align="left">
@@ -95,9 +94,10 @@
                                 int orderID = Integer.parseInt(request.getParameter("orderID"));
                                 int bookid = 0;
                                 int amount = 0;
-                                Object total = session.getAttribute("total");
                                 ResultSet result = s.executeQuery("select * from orderdetails where OrderID= '" + orderID + "'");
-                                ResultSet result2 = null; %>
+                                ResultSet result2 = null; 
+                                ResultSet result3 = null;
+                        %>
                         <table id="t2" border="1" width="750" align="left">
                             <tr>
                                 <th width="150"> <div align="center">รหัสสินค้า </div></th>
@@ -117,8 +117,11 @@
                                 <td><%out.print(amount);%></td>
                             </tr>
                             <%   }
-                    }%>
-                            <td>รวม</td><td><%out.print(total);%> บาท</td>
+                    }                       
+                        result3 = s.executeQuery("select * from orders where OrderID= '" + orderID + "'");
+                     while (result3.next()){     %>
+                            <td>รวม</td><td><%out.print(result3.getFloat("total"));%> บาท</td>
+                            <%}%>
                             <tr><td><center><p><a href="pdf.jsp?orderID=<%= orderID%>">Download Invoice</a></p></center></td></tr>
             </table>
             <% db.endConnection();
