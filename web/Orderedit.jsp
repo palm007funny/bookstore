@@ -57,6 +57,8 @@
                             + "SET Status = '" + request.getParameter("status" + i) + "' "
                             + " WHERE OrderID = '" + result.getInt("OrderID") + "' ";
                     s.execute(Status);
+                     %><META HTTP-EQUIV="refresh" 
+                  CONTENT="0;URL=Orderedit.jsp"><%
                 }
             }
             i++;
