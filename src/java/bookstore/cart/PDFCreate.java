@@ -1,20 +1,16 @@
 package bookstore.cart;
 
-import static bookstore.cart.CreatePDF.append;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
-import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
@@ -29,10 +25,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-/**
- * Hello world!
- *
- */
 public class PDFCreate {
 
     Connection connect = null;
@@ -172,8 +164,6 @@ public class PDFCreate {
             document.add(p);          
         }
         document.close();
-    }
-    public void download() {
     }
 
     public static String[][] append(String[][] a, String[][] b) {
