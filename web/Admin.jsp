@@ -5,8 +5,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
-<%@page contentType="text/html; charset=UTF-8"  %>
-<jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="db" class="bookstore.cart.Dbconnect" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html>

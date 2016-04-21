@@ -4,16 +4,18 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
-<%@page contentType="text/html; charset=UTF-8"  %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
     <head>
         <title>Add Book</title>
+        
     </head>
     <body bgcolor="#FFE7BA">
 
         <form name="frmAdd" method="post">	
             เพิ่มหนังสือ
+            <%@include  file="template/head.jsp"%>
             <table width="374" border="1">
                 <tr>
                     <th width="140">
@@ -78,7 +80,8 @@
             String company = request.getParameter("company");
             String date = request.getParameter("date");
             String Stock = "0";
-            book.Add(bookname, detail, picture, price, discount, booksize, bookweight, company, date,Stock);
+            String category = "";
+            book.Add(bookname, detail, picture, price, discount, booksize, bookweight, company, date,Stock,category);
 
             try {
                 Connection connect = null;

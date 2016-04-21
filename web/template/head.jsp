@@ -84,12 +84,23 @@ ri.dropdown {
     <a href="javascript:void(0)" class="dropbtn" onclick="myFunction()">หมวดหมู่</a>
     <div class="dropdown-content" id="myDropdown">
       <a href="bookcategory.jsp?category=000">ทั่วไป</a>
+      <a href="bookcategory.jsp?category=100">จิตวิทยา</a>
+      <a href="bookcategory.jsp?category=200">ศาสนา</a>
+      <a href="bookcategory.jsp?category=400">ภาษา</a>
+      <a href="bookcategory.jsp?category=500">วิทยาศาสตร์</a>
       <a href="bookcategory.jsp?category=700"">การ์ตูน</a>
+      <a href="bookcategory.jsp?category=600"">กีฬา/เกม</a>
       <a href="bookcategory.jsp?category=800"">วรรณกรรม</a>
     </div>
   </li>
-  <li><a href="userdetail.jsp">จัดการบัญชี</a></li>
-  <li><a href="report.jsp">จัดการบัญชี</a></li>
+  <li class="user">
+    <a href="javascript:void(0)" class="dropbtn" onclick="user()">จัดการบัญชี</a>
+    <div class="dropdown-content" id="myuser">
+      <a href="editprofile.jsp">แก้ไขข้อมูล</a>
+      <a href="userorder.jsp?order=<%=1%>">รายการสั่งซื้อ</a>
+      
+    </div>
+  <li><a href="report.jsp">report</a></li>
   <%Vector numcart = cart.getCart();
     numcart.size();%>
   <ri>จำนวนสินค้าในตระกร้า <%=numcart.size()%></ri>
@@ -101,6 +112,9 @@ ri.dropdown {
 toggle between hiding and showing the dropdown content */
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
+}
+function user() {
+    document.getElementById("myuser").classList.toggle("show");
 }
 
 // Close the dropdown if the user clicks outside of it

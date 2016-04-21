@@ -23,6 +23,8 @@
             String idbook = "";
             if (request.getParameter("id") != null) {
                 idbook = request.getParameter("id");
+                %><META HTTP-EQUIV="refresh" 
+          CONTENT="0;URL=cartlist.jsp"><%
             }
             try {
                 db.doConnection();

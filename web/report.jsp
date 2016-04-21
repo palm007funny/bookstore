@@ -5,10 +5,13 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
-<%@page contentType="text/html; charset=UTF-8"  %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="db" class="bookstore.cart.Dbconnect" scope="session" />
 <html>
     <head>
+        <body bgcolor="#FFE7BA">
+        <h1><center> Report </center></h1>
+        <%@include  file="template/head.jsp"%><br>
         <%
             Connection connect = null;
             Statement s = null;
@@ -51,6 +54,9 @@
                     num[9] = num[9] + 1;
                 }
             }
+            ps.close();
+            result.close();
+            db.endConnection();
         %>
         <script type="text/javascript" src="js/loader.js"></script>
         <script type="text/javascript">
@@ -61,12 +67,17 @@
                 var data = google.visualization.arrayToDataTable([
                     ['Task', 'amont of book'],
                     ['ทั่วไป', <%= num[0]%>],
+                    ['จิตวิทยา', <%= num[1]%>],
+                    ['ศาสนา', <%= num[2]%>],
+                    ['ภาษา', <%= num[4]%>],
+                    ['วิทยาศาสตร์', <%= num[5]%>],
+                    ['กีฬา/เกม', <%= num[6]%>],
                     ['การ์ตูน', <%= num[7]%>],
                     ['วรรณกรรม', <%= num[8]%>]
                 ]);
 
                 var options = {
-                    title: 'My Daily Activities'
+                    title: 'ประเภทของหนังสือ'
                 };
 
                 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -76,6 +87,6 @@
         </script>
     </head>
     <body>
-        <div id="piechart" style="width: 900px; height: 500px;"></div>
+        <div id="piechart"  style="width: 1900px; height: 600px;"></div>
     </body>
 </html>

@@ -5,7 +5,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
-<%@page contentType="text/html; charset=UTF-8"  %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
 <jsp:useBean id="db" class="bookstore.cart.Dbconnect" scope="session" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%@include  file="template/head.jsp"%>
     </head>
     <body bgcolor="#FFE7BA">
         <% //----------------------------------รายการสั่งซื้อ----------------------------------------------------------------------------- 
@@ -22,19 +23,23 @@
             ResultSet result = ps.executeQuery();
             ResultSet result2;
             String a = request.getParameter("status");
-            int i = 0;
-            while (result.next()) {%>
-        <table id="t2" border="1" width="600" align="left">
+            int i = 0; %>
+        <table id="t2" border="1" width="750" align="left">
             <tr>
             <th width="150"> <div align="center">หมายเลขสั่งซื้อ </div></th>
+            <th width="150"> <div align="center">ชื่อ-นามสกุล </div></th>
             <th width="150"> <div align="center">เวลาสั่งซื้อ </div></th>
+            <th width="150"> <div align="center">ราคา </div></th>
             <th width="150"> <div align="center">สถานะการสั่งซื้อ </div></th>
+            
         </tr>
+        <%while (result.next()) {%>          
         <tr>
-
         <form method="post" action="Orderedit.jsp">
             <td><div align="center"><%=result.getInt("OrderID")%></div></td>
+            <td><%=result.getString("Name")%> <%=result.getString("Surname")%></td>
             <td><%=result.getDate("OnDate")%></td>
+            <td><%=result.getFloat("total")%></td>
             <td align="center"><%=result.getString("Status")%></td>
             <td>                  
                 <select name="status<%=i%>" size="1" id="status<%=i%>">
@@ -57,19 +62,20 @@
                             + "SET Status = '" + request.getParameter("status" + i) + "' "
                             + " WHERE OrderID = '" + result.getInt("OrderID") + "' ";
                     s.execute(Status);
-                     %><META HTTP-EQUIV="refresh" 
-                  CONTENT="0;URL=Orderedit.jsp"><%
-                }
-            }
-            i++;
-            s.close();
-            result2.close();
+        %><META HTTP-EQUIV="refresh" 
+              CONTENT="0;URL=Orderedit.jsp"><%
+                      }
+                  }
+                  i++;
+                  s.close();
+                  result2.close();
         %>
-    </tr>
-</table><br><br><br><br><br><br>
-<%  }
-    result.close();
-    db.endConnection();
-%>
+        </tr>
+
+        <%  }
+            result.close();
+            db.endConnection();
+        %>
+    </table><br><br><br><br><br><br>
 </body>
 </html>

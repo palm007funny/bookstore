@@ -45,7 +45,7 @@
                         <%out.print("<img src=image/" + result.getString("picture"));%> width="230" height="330">   
                     </a></center></td>
                     <%}
-                            out.print("<tr></tr>");
+                            out.print("<tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr><tr></tr>");
 
                         }
 

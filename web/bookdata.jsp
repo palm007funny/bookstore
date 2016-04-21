@@ -23,15 +23,15 @@
                 File inputWorkbook = new File(fileName);
                 Workbook w = Workbook.getWorkbook(inputWorkbook);
                 editBook book = new editBook();
-
                 Sheet sheet = w.getSheet(0);
-%>   
+        %>   
         <%    for (int j = 0; j <= sheet.getColumns(); j++) {
 
                     Cell[] cell = sheet.getRow(j);
-                    book.Add(cell[1].getContents(), cell[2].getContents(), cell[3].getContents(), cell[4].getContents(), cell[5].getContents()
-                            , cell[6].getContents(), cell[7].getContents(), cell[8].getContents(), cell[9].getContents(),cell[10].getContents());
-
+                    book.Add(cell[1].getContents(), cell[2].getContents(), "im"+cell[3].getContents()+".jpg", 
+                            cell[4].getContents(), cell[5].getContents(), cell[6].getContents(), 
+                            cell[7].getContents(), cell[8].getContents(), cell[9].getContents(), 
+                            cell[10].getContents(), cell[11].getContents());
                 }
                 w.close();
 
@@ -40,6 +40,6 @@
             }
 
         %>
-ok
-</body>
+        ok
+    </body>
 </html>

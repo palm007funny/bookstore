@@ -5,12 +5,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>
+    <body>       
         <%
             String user = request.getParameter("username");
             String pass = request.getParameter("password");
             if (account.getLogin() == false) {
-        %>
+        %>  
         <form>
             <table>
                 <tr>
@@ -25,8 +25,11 @@
                       CONTENT="0;URL=index.jsp">
                 <% }
                 } else {
-                    out.print("<td>Welcome </td><td> " + account.getUsername() + "</td>");%>
+                    out.print("<td>Welcome </td><td> " + account.getUsername() + "</td>");%>                  
                 <a href="index.jsp?logout=<%=1%>">LogOut</a>
+                <%if (account.checkAdmin() == 1){  %>                   
+                    <br><a href="Admin.jsp">ผู้ดูแล</a>
+                    <%}%>
                 <% if (request.getParameter("logout") != null) {
                     account.Logout(true);%>
                 <META HTTP-EQUIV="refresh" 

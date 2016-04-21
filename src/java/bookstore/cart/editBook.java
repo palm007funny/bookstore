@@ -18,7 +18,7 @@ public class editBook {
     Statement s = null;
 
     public String Add(String bookname, String detail, String picture, String price, String discount,
-            String booksize, String bookweight, String company, String date,String Stock) {
+            String booksize, String bookweight, String company, String date,String Stock,String category) {
         try {
             float price1 = Float.valueOf(price);
             float discount1 = Float.valueOf(discount);
@@ -27,11 +27,12 @@ public class editBook {
             s = connect.createStatement();
 
             String book = "INSERT INTO book "
-                    + "(bookname,detail,picture,price,discount,booksize,bookweight,company,date,Stock) "
+                    + "(bookname,detail,picture,price,discount,booksize,bookweight,company,date,Stock,category) "
                     + "VALUES ('" + bookname + "' "
                     + ",'" + detail + "','" + picture + "'"
                     + ",'" + price1 + "','" + discount1 + "','" + booksize
-                    + "','" + bookweight + "','" + company + "','" + date + "','" + Stock + "') ";
+                    + "','" + bookweight + "','" + company + "','" + date 
+                    + "','" + Stock + "','" + category + "') ";
 
             s.execute(book);
             return "เพิ่มหนังสือ สำเร็จ";
