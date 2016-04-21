@@ -6,15 +6,15 @@
 <%@ page import="java.lang.NumberFormatException" %>
 <%@ page import="java.lang.NullPointerException" %>
 <%@ page import="java.util.LinkedList" %>
-<%@page contentType="text/html; charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="bookstore.cart.*,java.util.*,java.text.*" %>
 <jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
-<jsp:useBean id="cart" class="bookstore.cart.Cart" scope="session" />
 <jsp:useBean id="db" class="bookstore.cart.Dbconnect" scope="session" />
 <script type="text/javascript" src="counter.js"></script>
 <html>
     <head>
         <title>BookDetail</title>
+        <%@include  file="template/head.jsp"%>
     </head>
     <body bgcolor="#FFE7BA">
 

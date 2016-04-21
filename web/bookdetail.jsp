@@ -3,8 +3,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="db" class="bookstore.cart.Dbconnect" scope="session" />
 <html>
     <head>
@@ -12,6 +11,7 @@
     </head>
     <body bgcolor="#FFE7BA">
         <h1><center> BookDetail </center></h1>
+        <%@include  file="template/head.jsp"%>
                 <%
                     String idbook = "";
                     if (request.getParameter("id") != null) {
@@ -30,45 +30,7 @@
                         ResultSet result = s.executeQuery(sql);
                         if (result != null) {
                             result.next();
-                %>
-                <%
-                    String user = request.getParameter("username");
-                    String pass = request.getParameter("password");
-                    if (account.getLogin() == false) {
-                %>
-        <form>
-            <table>
-                <tr>
-                <td> Username  : </td><td> <input name="username" size=15 type="text" /> </td> 
-                <td> Password  : </td><td> <input name="password" size=15 type="password" /> </td>                                           
-                <td><input type="submit" value="login" /></td>
-
-
-        </form>
-        <%
-                        account.Login(user, pass);
-                        if (user != null) {%>
-    <META HTTP-EQUIV="refresh" 
-          CONTENT="0;URL=index.jsp">
-    <% }
-                } else {
-                    out.print("<td>Welcome </td><td> " + account.getUsername() + "</td>");%>
-    <a href="index.jsp?logout=<%=1%>">LogOut</a>
-    <% if (request.getParameter("logout") != null) {
-                        account.Logout(true);%>
-    <META HTTP-EQUIV="refresh" 
-          CONTENT="0;URL=index.jsp">
-    <%}
-                    } %>
-</tr>
-</table> 
-<br>
-<table id="t0" border="2" bordercolor="#EEC591" width="250" align="left">          
-    <tr><td><center><p><a href="register.jsp">สมัครสมาชิค</a></p></center></td></tr>
-<tr><td><center><p><a href="cartlist.jsp">ตะกร้าสินค้า</a></p></center></td></tr>
-<tr><td><center><p><a href="userdetail.jsp">จัดการบัญชี</a></p></center></td></tr>
-<tr><td><center><p><a href="index.jsp">หน้าแรก</a></p></center></td></tr>
-</table>  
+                %>              
 <table id="t2" border="0" width="250" align="left">
     <td width="230"><%out.print("<img src=image/" + result.getString("picture"));%> width="230" height="330"</td>
     <% if (result.getInt("Stock") == 0) { %>

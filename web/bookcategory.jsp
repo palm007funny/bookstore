@@ -17,8 +17,10 @@
             int row = 7;
             Dbconnect db = new Dbconnect();
             db.doConnection();
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM book");
-            ResultSet result = ps.executeQuery();
+            Statement s = null;
+            s = db.getConnection().createStatement();
+            String category = request.getParameter("category");
+            ResultSet result = s.executeQuery("select * from book where category= '" + category + "'");
             result.afterLast();%>
             <table id="t1" border="0" width="1150" align="center">
                 <tr><% 

@@ -4,7 +4,6 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.Document;
@@ -69,7 +68,7 @@ public class PDFCreate {
         }
         //--------------------------------------------------------------------------------------------------------
         Document document = new Document(PageSize.A4);
-        String pdfURL = "C:\\Users\\USER\\Documents\\NetBeansProjects\\BookStore\\build\\web\\pdf\\Invoice.pdf";
+        String pdfURL = "C:\\Users\\USER\\Documents\\NetBeansProjects\\BookStore\\web\\Invoice.pdf";
         PdfWriter.getInstance(document, new FileOutputStream(pdfURL));
         document.open();
 

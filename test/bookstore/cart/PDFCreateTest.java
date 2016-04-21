@@ -86,10 +86,13 @@ public class PDFCreateTest {
     @Test
     public void testCreatePdf() throws Exception {
         System.out.println("createPdf");
-        int orderID = 0;
-        int idaccount = 0;
+        int orderID = 1;
+        int idaccount = 1;
         PDFCreate instance = new PDFCreate();
         instance.createPdf(orderID, idaccount);
+        if (orderID <= 0 || idaccount <= 0){
+            fail("order error");
+        }
         // TODO review the generated test code and remove the default call to fail.
     }
 

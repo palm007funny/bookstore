@@ -4,7 +4,7 @@
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
-<%@page contentType="text/html; charset=UTF-8"  %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
 <jsp:useBean id="db" class="bookstore.cart.Dbconnect" scope="session" />
 <!DOCTYPE html>
@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%@include  file="template/head.jsp"%>
     </head>
     <body bgcolor="#FFE7BA">
         <h1><center> จัดการบัญชี </center></h1>

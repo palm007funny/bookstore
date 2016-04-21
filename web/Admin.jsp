@@ -15,13 +15,13 @@
         <title>admin</title>
     </head>
     <h1><center> Admin </center></h1>
+    <%@include  file="template/head.jsp"%>
     <body bgcolor="#FFE7BA">
         <table id="t0" border="2" bordercolor="#EEC591" width="250" align="left"> 
 
             <tr><td><center><p><a href="Orderedit.jsp">รายการสั่งซื้อ</a></p></center></td></tr>         
-                            <% if (account.checkAdmin() == 1) { %>
         <tr><td><center><p><a href="addbook.jsp">เพิ่ม-ลบหนังสือ</a></p></td></center></tr>
-                        <%}%>
+        <tr><td><center><p><a href="report.jsp">report</a></p></td></center></tr>
 <tr><td><center><p><a href="index.jsp">หน้าแรก</a></p></center></td></tr>
 <tr><td><center><p><a href="userdetail.jsp?logout=<%=1%>">LogOut</a></p></center></td></tr>
 

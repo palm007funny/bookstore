@@ -1,5 +1,5 @@
 <%    
-  String filename = "Users\\USER\\Documents\\NetBeansProjects\\BookStore\\build\\web\\pdf\\Invoice.pdf";   
+  String filename = "Users\\USER\\Documents\\NetBeansProjects\\BookStore\\web\\Invoice.pdf";   
   String filepath = "c:\\";   
   response.setContentType("APPLICATION/OCTET-STREAM");   
   response.setHeader("Content-Disposition","attachment; filename=\"" + filename + "\"");
