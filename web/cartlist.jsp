@@ -8,6 +8,7 @@
 <%@ page import="java.util.LinkedList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="bookstore.cart.*,java.util.*,java.text.*" %>
+<jsp:useBean id="cart" class="bookstore.cart.Cart" scope="session" />
 <jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
 <jsp:useBean id="db" class="bookstore.cart.Dbconnect" scope="session" />
 <script type="text/javascript" src="counter.js"></script>
@@ -62,7 +63,7 @@
             Statement s2 = db.getConnection().createStatement();
             float total, finish_total = 0;
             if (mycart.size() > 0) { %>
-        <table id="t1" width="1270" border="1">
+        <table id="t1" width="1270" align="center" border="1">
             <tr>
             <th width="100"> <div align="center">รหัสสินค้า </div></th>
             <th width="400"> <div align="center">ชื่อหนังสือ </div></th>
@@ -79,6 +80,7 @@
                 <%}%>
         </tr>
         <%  StringBuffer condition = new StringBuffer(" in (");
+        session.setAttribute("cartsize",mycart.size());
           for (int i = 0; i < mycart.size(); i++) {
               item = (Item) mycart.elementAt(i);
               if (request.getParameter("Points" + i) != null) {
@@ -161,7 +163,7 @@
     <% }
         db.endConnection();%>
 </table>
-<table id="t2" width="200" border="1">
+<table id="t2" align="center" width="200" border="1">
     <tr>
     <th width="71"> <div align="center"> รวม </div></th>
     <td align="center">
@@ -177,14 +179,21 @@
 </table>
 <%if (mycart.size() <= 0){%>
 ยังไม่มีสินค้าในรายการ
+<%session.setAttribute("cartsize",mycart.size());%>
 <%}%>
 <p><a href="index.jsp">เลือกสินค้าต่อ</a></p> 
 <style>
+    th, td {
+        padding: 12px;
+        color: black;
+    }
     table#t1 tr:nth-child(even) {
         background-color: #eee;
+        color: black;
     }
     table#t1 tr:nth-child(odd) {
         background-color:#fff;
+        color: black;
     }
     table#t1 th	{
         background-color: #fff;

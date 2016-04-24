@@ -100,7 +100,7 @@
                     if (!password.equals(confirmpassword)) {
                         out.print("กรุณาใส่ password ให้ตรงกัน");
                     } else {
-                        request.setCharacterEncoding("UTF-8");
+                        request.setCharacterEncoding("UTF-8");                       
                         out.print(account.update(name, lastname, email, password, Phone, AddressNo, Street, Tumbol, Amphor, Province, Postal, account.getID()));
             %><META HTTP-EQUIV="refresh" 
                   CONTENT="1;URL=editprofile.jsp"><%

@@ -1,7 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="bookstore.cart.*,java.util.*,java.text.*" %>
 <jsp:useBean id="cart" class="bookstore.cart.Cart" scope="session" />
 <jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
@@ -11,6 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Check Out</title>
+        <%@include  file="template/head.jsp"%>
     </head>
     <body bgcolor="#FFE7BA">
         <%   String user = request.getParameter("username");

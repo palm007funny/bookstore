@@ -3,7 +3,7 @@
     Created on : Jan 25, 2016, 2:25:36 PM
     Author     : Palm
 --%>
-<%@page contentType="text/html; charset=UTF-8"  %>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="bookstore.cart.*,java.util.*,java.text.*" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <%@include  file="template/head.jsp"%>
     </head>
     <body bgcolor="#FFE7BA">
 

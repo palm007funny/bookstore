@@ -120,6 +120,7 @@
     th, td {
         padding: 12px;
         text-align: left;
+        color: black;
     }
     table#t1 tr:nth-child(even) {
         background-color: #eee;

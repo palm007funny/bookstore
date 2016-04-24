@@ -3,43 +3,54 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@ page language="java" import="bookstore.cart.*,java.util.*,java.text.*" %>
-
+<jsp:useBean id="db" class="bookstore.cart.Dbconnect" scope="session" />
 <html>
     <head>      
         <title>BookStore</title>
     <h1><center> BookStore </center></h1>
+            <%request.setCharacterEncoding("UTF-8");%>
             <%@include  file="template/head.jsp"%>
             <%@include  file="template/login.jsp"%>
+            <%@include  file="template/searchbox.jsp"%>
 </head>
 <body bgcolor="#FFE7BA">
 
-    <%  int numbook = 0;
+    <%
+        int numbook = 0;
         int row = 7;
-        Dbconnect db = new Dbconnect();
+        int maxbook = 0;
+        int width = 230 ;
         db.doConnection();
+        Statement s = null;
+        s = db.getConnection().createStatement();
         PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM book");
-        ResultSet result = ps.executeQuery();
+        ResultSet result = ps.executeQuery();       
+        if (request.getParameter("search") != null) {
+            ps = db.getConnection().prepareStatement("SELECT * FROM  book WHERE bookname like '%" +  search + "%' " +" ORDER BY id ASC");
+            
+            result = ps.executeQuery();
+        }
         result.afterLast();%>
-    <table id="t1" border="0" width="1150" align="center">
+    <table id="t1" border="0" width="230" align="center">
         <tr><%
-                    while (result.previous()) {
-                        numbook++;
-                    }%> 
+            while (result.previous()) {
+                numbook++;
+            }%> 
 
-                    <% 
-                result.absolute(numbook+1);
+            <% maxbook = numbook;
+                result.absolute(maxbook + 1);
                 for (int i = 0; i < (numbook / row); i++) {
                     for (int j = 0; j < row; j++) {
-                                result.previous(); %>       
-            <th><center> <%out.print(result.getString("bookname"));%></center></th>              
+                        result.previous(); %>       
+            <th width="230"><center> <%out.print(result.getString("bookname"));%></center></th>              
             <%}
                 out.print("<tr></tr>");
                 for (int j = 0; j < row; j++) {
                     result.next();
                 }
                 for (int j = 0; j < row; j++) {
-                        result.previous();%>       
-    <td><center> <a href="bookdetail.jsp?id=<%=result.getString("id")%>">
+                    result.previous();%>       
+    <td width="230"><center> <a href="bookdetail.jsp?id=<%=result.getString("id")%>">
             <%out.print("<img src=image/" + result.getString("picture"));%> width="230" height="330">   
         </a></center></td>
         <%}
@@ -48,8 +59,8 @@
             }
 
             for (int k = 0; k < (numbook % row); k++) {
-                            result.previous(); %>       
-<th><center> <%out.print(result.getString("bookname"));%></center></th>
+                result.previous(); %>       
+<th width="230"><center> <%out.print(result.getString("bookname"));%></center></th>
     <% }%>
 
 <% for (int j = 0; j < (numbook % row); j++) {
@@ -57,13 +68,16 @@
     }
     out.print("<tr></tr>");
     for (int k = 0; k < (numbook % row); k++) {
-                        result.previous();%>   
-<td><center> <a href="bookdetail.jsp?id=<%=result.getString("id")%>">
+        result.previous();%>   
+<td width="230"><center> <a href="bookdetail.jsp?id=<%=result.getString("id")%>">
         <%out.print("<img src=image/" + result.getString("picture"));%> width="230" height="330">   
     </a></center></td>
     <%
         }
+        ps.close();
+        result.close();
     %>
+
 </div>
 </tr>
 </table> 
