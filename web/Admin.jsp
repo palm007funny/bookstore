@@ -15,8 +15,7 @@
     </head>
     <h1><center> Admin </center></h1>
     <%@include  file="template/head.jsp"%>
-    <body bgcolor="#FFE7BA">
-        <table id="t0" border="2" bordercolor="#EEC591" width="250" align="left"> 
+        <table id="t0" border="2" width="250" align="left"> 
 
             <tr><td><center><p><a href="Orderedit.jsp">รายการสั่งซื้อ</a></p></center></td></tr>         
         <tr><td><center><p><a href="addbook.jsp">เพิ่ม-ลบหนังสือ</a></p></td></center></tr>
@@ -26,24 +25,24 @@
 
 </tr>
 </table>
+    
 <style>
     th, td {
         padding: 15px;
         text-align: left;
+        color: black;
     }
-    table#t1 tr {
-        background-color: #FFE7BA;
-    }
-    table#t1 th	{
-        background-color: black;
-        color: white;
-    }
-
     table#t0 tr{
-        background-color: #EEC591;
+        color: #eee;
     }
-    table#t2 tr{
-        background-color: #fff;
+    table#t0 tr:nth-child(even) {
+        background-color: #eee;
+    }
+    table#t0 tr:nth-child(odd) {
+        background-color:#fff;
+    }
+    a {
+        color: black;
     }
 </style>
 </body>

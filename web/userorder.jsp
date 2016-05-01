@@ -97,6 +97,7 @@
     th, td {
         padding: 5px;
         text-align: left;
+        color: black;
     }
     table#t1 tr:nth-child(even) {
         background-color: #eee;
@@ -106,6 +107,9 @@
     }
     table#t1 th	{
         background-color: #fff;
+        color: black;
+    }
+    a {
         color: black;
     }
 

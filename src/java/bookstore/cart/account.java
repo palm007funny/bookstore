@@ -79,8 +79,15 @@ public class account {
         if (Login(username, password) == true) {
             return username;
         }
-        return "Invalid password <a href='index.jsp'>try again</a>";
+        return null;
     }
+    public String getPassword() throws ClassNotFoundException, SQLException {
+        if (Login(username, password) == true) {
+            return password;
+        }
+        return null;
+    }
+
 
     public boolean getLogin() throws ClassNotFoundException, SQLException {
         if (Login(username, password) == true) {

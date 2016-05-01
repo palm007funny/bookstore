@@ -11,7 +11,7 @@
     </head>
     <body bgcolor="#FFE7BA">
         <h1><center> BookDetail </center></h1>
-        <%@include  file="template/head.jsp"%>
+                <%@include  file="template/head.jsp"%>
                 <%
                     String idbook = "";
                     if (request.getParameter("id") != null) {
@@ -31,67 +31,67 @@
                         if (result != null) {
                             result.next();
                 %>              
-<table id="t2" border="0" width="250" align="left">
-    <td width="230"><%out.print("<img src=image/" + result.getString("picture"));%> width="230" height="330"</td>
-    <% if (result.getInt("Stock") == 0) { %>
-    <tr><td><center><%out.print("<img src=image/cart.png");%> width="65" height="62">                           
-        </center></td></tr>
-<tr><td><center><%out.print(" สินค้าหมด ");%></center></td></tr>
+        <table id="t2" border="0" width="250" align="left">
+            <td width="230"><%out.print("<img src=image/" + result.getString("picture"));%> width="230" height="330"</td>
+            <% if (result.getInt("Stock") == 0) { %>
+            <tr><td><center><%out.print("<img src=image/cart.png");%> width="65" height="62">                           
+            </center></td></tr>
+    <tr><td><center><%out.print(" สินค้าหมด ");%></center></td></tr>
         <% } else {%>
 <tr><td><center><a href="cartlist.jsp?id=<%=result.getString("id")%>">
-            <%out.print("<img src=image/cart.png");%> width="65" height="62">                           
-        </a></center></td></tr>
+        <%out.print("<img src=image/cart.png");%> width="65" height="62">                           
+    </a></center></td></tr>
 <tr><td><center><%out.print(" สินค้าคงเหลือ " + result.getInt("Stock"));%></center></td></tr>
-        <% }%>
+    <% }%>
 </table>
 <table id="t1" border="0" width="800" align="left">
 
     <tr>
-    <th width="100">
-        <div align="left">Book ID </div></th>
-    <td><%=result.getString("id")%></td>
-</tr>
-<tr>
-<th width="100">
-    <div align="left">BookName </div></th>
-<td><%=result.getString("bookname")%></td>
-</tr>
-<tr>
-<th width="100">
-    <div align="left">detail </div></th>
-<td><%=result.getString("detail")%></td>
-</tr>
+        <th width="100">
+            <div align="left">Book ID </div></th>
+        <td><%=result.getString("id")%></td>
+    </tr>
+    <tr>
+        <th width="100">
+            <div align="left">BookName </div></th>
+        <td><%=result.getString("bookname")%></td>
+    </tr>
+    <tr>
+        <th width="100">
+            <div align="left">detail </div></th>
+        <td><%=result.getString("detail")%></td>
+    </tr>
 
-<tr>
-<th width="100">
-    <div align="left">price </div></th>
-<td><%=result.getFloat("price")%> บาท</td>
-</tr>
-<tr>
-<th width="100">
-    <div align="left">Discount </div></th>
-<td><%=result.getFloat("discount")%> %</td>
-</tr>
-<tr>
-<th width="100">
-    <div align="left">ขนาดหนังสือ </div></th>
-<td><%=result.getString("booksize")%></td>
-</tr>
-<tr>
-<th width="100">
-    <div align="left">น้ำหนัก </div></th>
-<td><%=result.getString("bookweight")%></td>
-</tr>
-<tr>
-<th width="100">
-    <div align="left">สำนักพิมพ์ </div></th>
-<td><%=result.getString("company")%></td>
-</tr>
-<tr>
-<th width="100">
-    <div align="left">ปีที่พิมพ์ </div></th>
-<td><%=result.getString("date")%></td>
-</tr>
+    <tr>
+        <th width="100">
+            <div align="left">price </div></th>
+        <td><%=result.getFloat("price")%> บาท</td>
+    </tr>
+    <tr>
+        <th width="100">
+            <div align="left">Discount </div></th>
+        <td><%=result.getFloat("discount")%> %</td>
+    </tr>
+    <tr>
+        <th width="100">
+            <div align="left">ขนาดหนังสือ </div></th>
+        <td><%=result.getString("booksize")%></td>
+    </tr>
+    <tr>
+        <th width="100">
+            <div align="left">น้ำหนัก </div></th>
+        <td><%=result.getString("bookweight")%></td>
+    </tr>
+    <tr>
+        <th width="100">
+            <div align="left">สำนักพิมพ์ </div></th>
+        <td><%=result.getString("company")%></td>
+    </tr>
+    <tr>
+        <th width="100">
+            <div align="left">ปีที่พิมพ์ </div></th>
+        <td><%=result.getString("date")%></td>
+    </tr>
 
 
 </table> 

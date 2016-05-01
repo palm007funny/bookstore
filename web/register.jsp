@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <h1><center> Register </center></h1>
         <%@include  file="template/head.jsp"%>
     </head>
     <body bgcolor="#FFE7BA">

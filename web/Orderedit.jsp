@@ -24,7 +24,7 @@
             ResultSet result2;
             String a = request.getParameter("status");
             int i = 0; %>
-        <table id="t2" border="1" width="750" align="left">
+        <table id="t0" border="1" width="1000" align="center">
             <tr>
             <th width="150"> <div align="center">หมายเลขสั่งซื้อ </div></th>
             <th width="150"> <div align="center">ชื่อ-นามสกุล </div></th>
@@ -77,5 +77,20 @@
             db.endConnection();
         %>
     </table><br><br><br><br><br><br>
+    <style>
+    th, td {
+        padding: 15px;
+        color: black;
+    }
+    table#t0 tr:nth-child(even) {
+        background-color: #eee;
+    }
+    table#t0 tr:nth-child(odd) {
+        background-color:#fff;
+    }
+    a {
+        color: black;
+    }
+</style>
 </body>
 </html>

@@ -17,7 +17,10 @@
                 overflow: hidden;
                 background-color: #333;
             }
-
+            a {
+                color: #eee;
+                text-decoration:none
+            }
             li {
                 float: left;
             }
@@ -105,8 +108,9 @@
                     <a href="userorder.jsp?order=<%=1%>">รายการสั่งซื้อ</a>
 
                 </div>
-            <li><a href="report.jsp">report</a></li>
+            <li><a href="graph.jsp">report</a></li>
             <%int cartsize = 0;
+            session.setAttribute("cartsize",cartsize);
                 if (!session.getAttribute("cartsize").equals(null)){
                     cartsize = Integer.valueOf(String.valueOf(session.getAttribute("cartsize")));
                 }
