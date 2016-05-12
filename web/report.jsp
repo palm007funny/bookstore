@@ -20,7 +20,7 @@
             String category = null;
             int[] num = new int[9];
             PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM book");
-            ResultSet result = ps.executeQuery();
+            ResultSet result = ps.executeQuery();            
             while (result.next()) {
                 category = result.getString("category");
                 if (category.equals("000")) {
@@ -54,6 +54,18 @@
                     num[9] = num[9] + 1;
                 }
             }
+            String fileName = application.getRealPath("/data.csv");
+            genCSV csv = new genCSV();
+            csv.startGen(fileName);
+            csv.generateCsvFile("ทั่วไป", num[0]);
+            csv.generateCsvFile("จิตวิทยา", num[1]);
+            csv.generateCsvFile("ศาสนา", num[2]);
+            csv.generateCsvFile("ภาษา", num[4]);
+            csv.generateCsvFile("วิทยาศาสตร์", num[5]);
+            csv.generateCsvFile("กีฬา/เกม", num[6]);
+            csv.generateCsvFile("การ์ตูน", num[7]);
+            csv.generateCsvFile("วรรณกรรม", num[8]);
+            csv.endGen();
             ps.close();
             result.close();
             db.endConnection();
@@ -83,6 +95,7 @@
                 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
                 chart.draw(data, options);
+          
             }
         </script>
     </head>

@@ -19,7 +19,7 @@
         <% //----------------------------------รายการสั่งซื้อ----------------------------------------------------------------------------- 
             request.setCharacterEncoding("UTF-8");
             db.doConnection();
-            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM orders");
+            PreparedStatement ps = db.getConnection().prepareStatement("SELECT * FROM orders where Status != " + "'ชำระเงินสำเร็จ'" + "");
             ResultSet result = ps.executeQuery();
             ResultSet result2;
             String a = request.getParameter("status");
@@ -55,11 +55,16 @@
             Statement s = null;
             db.doConnection();
             s = db.getConnection().createStatement();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String strDate = dateFormat.format(date);
+            
             result2 = s.executeQuery("select * from orders where OrderID= '" + result.getInt("OrderID") + "'");
             if (request.getParameter("status" + i) != null) {
                 if (result2.next()) {
                     String Status = "UPDATE orders "
                             + "SET Status = '" + request.getParameter("status" + i) + "' "
+                            + ", dateconfirm = '" + strDate + "' "
                             + " WHERE OrderID = '" + result.getInt("OrderID") + "' ";
                     s.execute(Status);
         %><META HTTP-EQUIV="refresh" 

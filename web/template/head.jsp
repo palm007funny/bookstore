@@ -109,6 +109,8 @@
 
                 </div>
             <li><a href="graph.jsp">report</a></li>
+            <li><a href="report.jsp">report</a></li>
+            <li><a href="sale_report.jsp">sale</a></li>
             <%int cartsize = 0;
             session.setAttribute("cartsize",cartsize);
                 if (!session.getAttribute("cartsize").equals(null)){
