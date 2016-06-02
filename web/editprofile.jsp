@@ -25,57 +25,57 @@
                     if (result.next()) {
             %>
             <form name="frmupdate" method="post">
-                <table id="t2" border="1" width="750" align="left">
+                <table id="t0" border="1" width="750" align="left">
                     <tr>
                         <th width="150"> <div align="center">ชื่อ </div></th>
-                        <td><input type="text" name="name" size="20" value="<%=result.getString("Name")%>"></td>
+                        <td><input type="text" name="name" size="50" value="<%=result.getString("Name")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">นามสกุล </div></th>
-                        <td><input type="text" name="lastName" size="20" value="<%=result.getString("lastName")%>"></td>
+                        <td><input type="text" name="lastName" size="50" value="<%=result.getString("lastName")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">Email </div></th>
-                        <td><input type="text" name="email" size="20" value="<%=result.getString("email")%>"></td>
+                        <td><input type="text" name="email" size="50" value="<%=result.getString("email")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">เบอร์โทรศัพท์ </div></th>
-                        <td><input type="text" name="Phone" size="20" value="<%=result.getString("Phone")%>"></td>
+                        <td><input type="text" name="Phone" size="50" value="<%=result.getString("Phone")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">บ้านเลขที่ </div></th>
-                        <td><input type="text" name="AddressNo" size="20" value="<%=result.getString("AddressNo")%>"></td>
+                        <td><input type="text" name="AddressNo" size="50" value="<%=result.getString("AddressNo")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">ถนน </div></th>
-                        <td><input type="text" name="Street" size="20" value="<%=result.getString("Street")%>"></td>
+                        <td><input type="text" name="Street" size="50" value="<%=result.getString("Street")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">ตำบล/แขวง </div></th>
-                        <td><input type="text" name="Tumbol" size="20" value="<%=result.getString("Tumbol")%>"></td>
+                        <td><input type="text" name="Tumbol" size="50" value="<%=result.getString("Tumbol")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">อำเภอ/เขต </div></th>
-                        <td><input type="text" name="Amphor" size="20" value="<%=result.getString("Amphor")%>"></td>
+                        <td><input type="text" name="Amphor" size="50" value="<%=result.getString("Amphor")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">จังหวัด </div></th>
-                        <td><input type="text" name="Province" size="20" value="<%=result.getString("Province")%>"></td>
+                        <td><input type="text" name="Province" size="50" value="<%=result.getString("Province")%>"></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">รหัสไปรณีย์ </div></th>
-                        <td><input type="text" name="Postal" size="20" value="<%=result.getString("Postal")%>"></td>
+                        <td><input type="text" name="Postal" size="50" value="<%=result.getString("Postal")%>"></td>
                     </tr>
                     <tr>
                         <td>เปลี่ยนรหัสผ่าน</td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">new Password </div></th>
-                        <td><input type="password" name="password" size="20" value=""></td>
+                        <td><input type="password" name="password" size="50" value=""></td>
                     </tr>
                     <tr>
                         <th width="150"> <div align="center">Confirm new Password </div></th>
-                        <td><input type="password" name="repassword" size="20" value=""></td>
+                        <td><input type="password" name="repassword" size="50" value=""></td>
                     </tr>
                     <tr><td></td><td><input type="submit" value="Save"></td></tr>
                 </table>

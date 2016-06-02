@@ -78,7 +78,23 @@
                 display: block;
                 text-align: left;
             }
-
+th, td {
+        padding: 10px;
+        text-align: left;
+        color: black;
+    }
+    table#t0 tr{
+        color: #eee;
+    }
+    table#t0 tr:nth-child(even) {
+        background-color: #eee;
+    }
+    table#t0 tr:nth-child(odd) {
+        background-color:#fff;
+    }
+    a {
+        color: black;
+    }
             .dropdown-content a:hover {background-color: #f1f1f1}
 
             .show {display:block;}
@@ -106,11 +122,10 @@
                 <div class="dropdown-content" id="myuser">
                     <a href="editprofile.jsp">แก้ไขข้อมูล</a>
                     <a href="userorder.jsp?order=<%=1%>">รายการสั่งซื้อ</a>
+                    <a href="salereport.jsp">report</a>
 
                 </div>
-            <li><a href="graph.jsp">report</a></li>
-            <li><a href="report.jsp">report</a></li>
-            <li><a href="sale_report.jsp">sale</a></li>
+            </li>
             <%int cartsize = 0;
             session.setAttribute("cartsize",cartsize);
                 if (!session.getAttribute("cartsize").equals(null)){

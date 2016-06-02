@@ -16,7 +16,7 @@
         <form name="frmAdd" method="post">	
             เพิ่มหนังสือ
             <%@include  file="template/head.jsp"%>
-            <table width="374" border="1">
+            <table id="t0" width="374" border="1">
                 <tr>
                     <th width="140">
                         <div align="left">ชื่อหนังสือ </div></th>
@@ -94,7 +94,7 @@
                 ResultSet result = s.executeQuery(sql);
         %>
         <font size="5"><p><a href="bookdata.jsp">excel</a></p></font>
-        <table width="600" border="1">
+        <table id="t0"width="600" border="1">
             <tr>
                 <th width="91"> <div align="center">Book ID </div></th>
                 <th width="98"> <div align="center">Bookname </div></th>

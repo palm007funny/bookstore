@@ -16,9 +16,9 @@
         <%@include  file="template/head.jsp"%>
     </head>
     <body bgcolor="#FFE7BA">
-
+        <br>
         <form name="frmAdd" method="post">	
-            <table style="width:25%" border="2" >  
+            <table id="t0" style="width:25%" border="2" >  
 
                 <tr>
                     <th width="140">

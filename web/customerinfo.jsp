@@ -8,7 +8,7 @@
     </head>
     <body bgcolor="#FFE7BA">
         <form name="customer" method="post" action="checkout.jsp">	
-	<table width="600" border="1">
+	<table id="t0" width="600" border="1">
 	<th width="140">
     <div align="left">ชื่อ </div></th>
 		<td><input type="text" name="firstname" size="20"></td>

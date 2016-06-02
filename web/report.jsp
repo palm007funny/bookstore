@@ -54,7 +54,7 @@
                     num[9] = num[9] + 1;
                 }
             }
-            String fileName = application.getRealPath("/data.csv");
+            String fileName = application.getRealPath("/data.tsv");
             genCSV csv = new genCSV();
             csv.startGen(fileName);
             csv.generateCsvFile("ทั่วไป", num[0]);
@@ -100,6 +100,6 @@
         </script>
     </head>
     <body>
-        <div id="piechart"  style="width: 1900px; height: 600px;"></div>
+        <div id="piechart"  style="width: 1000px; height: 600px;"></div>
     </body>
 </html>

@@ -13,9 +13,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <h1><center> Sale Report </center></h1>
         <%@include  file="template/head.jsp"%>
     </head>
+    
     <body bgcolor="#FFE7BA">
+        
         <% //----------------------------------รายการสั่งซื้อ----------------------------------------------------------------------------- 
             request.setCharacterEncoding("UTF-8");
             db.doConnection();
@@ -40,7 +43,11 @@
         </tr>
 
 
-        <%while (result.next()) {%>          
+        <%String fileName = application.getRealPath("/data.tsv");
+            genCSV csv = new genCSV();
+            csv.startGen(fileName);
+            
+            while (result.next()) {%>          
         <tr>
         <form method="post" action="Orderedit.jsp">
             <td><div align="center"><%= i%></div></td>
@@ -48,7 +55,8 @@
             <td><div align="center"><%=result.getString("Name")%> <%=result.getString("Surname")%></div></td>
             <td><div align="center"><%=result.getDate("dateconfirm")%></div></td>
             <td><div align="center"><%=result.getFloat("total")%></div></td>
-                <% grandtotal += result.getFloat("total");
+                <%csv.generateCsvFile(String.valueOf(result.getDate("dateconfirm")), result.getFloat("total"));
+                    grandtotal += result.getFloat("total");
                     date.add(result.getDate("dateconfirm"));
                     price.add(result.getFloat("total"));
                 %>            
@@ -57,6 +65,7 @@
 
     <%  i++;
         }
+csv.endGen();
         result.close();
         db.endConnection();
         String oldStr = "";
@@ -127,9 +136,10 @@
     data.push(dataSeries);
 
 </script>
+    
 <script type="text/javascript" src="js/canvasjs.min.js"></script></head>
 <body>
-    <div id="chartContainer" style="height: 300px; width: 50%;position:absolute;left:480px;">
+    <div id="chartContainer" style="height: 300px; width: 50%;position:absolute;left:25%;">
     </div>
 </body>
 </html>

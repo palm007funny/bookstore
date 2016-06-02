@@ -1,7 +1,7 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page language="java" import="bookstore.cart.*,java.util.*,java.text.*" %>
 <jsp:useBean id="cart" class="bookstore.cart.Cart" scope="session" />
 <jsp:useBean id="account" class="bookstore.cart.account" scope="session" />
@@ -12,6 +12,8 @@
         <title>Finish Order</title>
     </head>
     <body bgcolor="#FFE7BA">
+        <h1><center>  </center></h1
+        <%@include  file="template/head.jsp"%>
         <%-------------------------------------------เพิ่มรายการสั่งซื้อ เข้า Database --------------------------------------------------------%>
         <%  request.setCharacterEncoding("UTF-8");
             String name = request.getParameter("firstname");

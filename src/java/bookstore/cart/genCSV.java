@@ -9,31 +9,30 @@ package bookstore.cart;
  *
  * @author Palm
  */
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class genCSV {
 
-    FileWriter writer;
-
+BufferedWriter bw;
     public void startGen(String sFileName) throws IOException {
-        writer = new FileWriter(sFileName);
-        writer.append("type");
-        writer.append(',');
-        writer.append("amount");
-        writer.append('\n');
+        bw = new BufferedWriter(new FileWriter(sFileName));
+        bw.write("date");
+        bw.write('\t');
+        bw.write("close");
+        bw.write('\n');
     }
 
-    public void generateCsvFile(String name, int data) throws IOException {
-
-        writer.append(name);
-        writer.append(',');
-        writer.append(String.valueOf(data));
-        writer.append('\n');
+    public void generateCsvFile(String name, float data) throws IOException {
+        
+        bw.write(name);
+        bw.write('\t');
+        bw.write(String.valueOf(data));
+        bw.write('\n');
         //generate whatever data you want       
     }
     public void endGen() throws IOException{
-        writer.flush();
-        writer.close();
+        bw.close();
     }
 }

@@ -119,10 +119,11 @@ public class PDFCreate {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setColspan(4);
         table.addCell(cell);
+       // for (int i = 0; i <= 1; i++) {
         PdfPCell cell2 = new PdfPCell(new Phrase("รหัสสินค้า", font(10, GrayColor.GRAYBLACK)));
         cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
         cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
-        for (int i = 0; i < 1; i++) {
+        
             table.addCell(cell2);
             cell2 = new PdfPCell(new Phrase("ชื่อหนังสือ", font(10, GrayColor.GRAYBLACK)));
             cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
@@ -136,23 +137,55 @@ public class PDFCreate {
             cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
             cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
             table.addCell(cell2);
-        }
+            
+            cell2 = new PdfPCell(new Phrase("", font(10, GrayColor.GRAYBLACK)));
+            cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);       
+            table.addCell(cell2);
+            cell2 = new PdfPCell(new Phrase("", font(10, GrayColor.GRAYBLACK)));
+            cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell2);
+            cell2 = new PdfPCell(new Phrase("", font(10, GrayColor.GRAYBLACK)));
+            cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell2);
+            cell2 = new PdfPCell(new Phrase("", font(10, GrayColor.GRAYBLACK)));
+            cell2.setBackgroundColor(GrayColor.LIGHT_GRAY);
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell2);
+        //}
         table.setHeaderRows(3);
         table.setFooterRows(1);
         table.getDefaultCell().setBackgroundColor(GrayColor.GRAYWHITE);
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-        for (String[] content1 : content) {
-            for (int j = 0; j < content1.length; j++) {
-                String text = content1[j];
+        for (int i = 0; i < content.length;i++) {
+            for (int j = 0; j <= 3; j++) {
+                //String text = content1[j];
+                
                 if (j == 2) {
-                    table.addCell(new PdfPCell(new Phrase(text + " บาท", font(8, BaseColor.BLACK)))).setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(new PdfPCell(new Phrase(content[i][j] + " บาท", font(8, BaseColor.BLACK)))).setHorizontalAlignment(Element.ALIGN_CENTER);
                 } else if (j == 0 || j == 3) {
-                    table.addCell(new PdfPCell(new Phrase(text, font(8, BaseColor.BLACK)))).setHorizontalAlignment(Element.ALIGN_CENTER);
+                    table.addCell(new PdfPCell(new Phrase(content[i][j], font(8, BaseColor.BLACK)))).setHorizontalAlignment(Element.ALIGN_CENTER);
                 } else {
-                    table.addCell(new PdfPCell(new Phrase(text, font(8, BaseColor.BLACK))));
+                    table.addCell(new PdfPCell(new Phrase(content[i][j], font(8, BaseColor.BLACK))));
                 }
             }
         }
+        
+//        for (String[] content1 : content) {
+//            for (int j = 0; j < content1.length; j++) {
+//                String text = content1[j];
+//                
+//                if (j == 2) {
+//                    table.addCell(new PdfPCell(new Phrase(text + " บาท", font(8, BaseColor.BLACK)))).setHorizontalAlignment(Element.ALIGN_CENTER);
+//                } else if (j == 0 || j == 3) {
+//                    table.addCell(new PdfPCell(new Phrase(text, font(8, BaseColor.BLACK)))).setHorizontalAlignment(Element.ALIGN_CENTER);
+//                } else {
+//                    table.addCell(new PdfPCell(new Phrase(text, font(8, BaseColor.BLACK))));
+//                }
+//            }
+//        }
         document.add(table);
         document.add(p);
         result4.beforeFirst();
